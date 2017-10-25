@@ -1,0 +1,5 @@
+*.log
+build/
+/target/*
+.idea/
+.idea/*.xml
