@@ -1,5 +1,4 @@
-*.log
-build/
-/target/*
-.idea/
-.idea/*.xml
+.idea
+ target
+ /target/*
+ *.txt
