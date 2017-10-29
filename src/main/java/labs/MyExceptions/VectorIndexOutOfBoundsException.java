@@ -1,4 +1,4 @@
-package labs;
+package labs.MyExceptions;
 
 import java.io.IOException;
 

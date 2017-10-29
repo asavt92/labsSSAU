@@ -1,4 +1,4 @@
-package labs;
+package labs.VectorClass;
 
 public interface Vector {
 
@@ -6,5 +6,5 @@ public interface Vector {
     double getElement(int n);
     double getNorma();
 
-    void setElement(int n, double element) throws ArrayIndexOutOfBoundsException;
+    void setElement(int n, double element);
 }

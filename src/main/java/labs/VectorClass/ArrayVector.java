@@ -1,4 +1,4 @@
-package labs;
+package labs.VectorClass;
 
 import java.io.Serializable;
 
@@ -7,6 +7,9 @@ public class ArrayVector implements Vector, Serializable, Cloneable {
     private int length;
     private double[] array;
 
+    public ArrayVector() {
+        super();
+    }
 
     public ArrayVector(int length) {
         this.array = new double[length];

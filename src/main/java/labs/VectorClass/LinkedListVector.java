@@ -1,8 +1,21 @@
-package labs;
+package labs.VectorClass;
 
 import java.io.Serializable;
 
 public class LinkedListVector implements Vector, Cloneable, Serializable {
+
+    public LinkedListVector() {
+        super();
+    }
+
+    //Конструктор вектора с координатами = 0
+    public LinkedListVector(int size) {
+        for (int i = 0; i<size;i++){
+            addElement(0);
+        }
+    }
+
+
     //Вспомогательный внутренний класс, реализует элемент связного списка.
     private class Node implements Cloneable {
         //Значение, которое хранит элемент связного списка.
@@ -26,9 +39,9 @@ public class LinkedListVector implements Vector, Cloneable, Serializable {
             try {
                 return (Node) super.clone();
             } catch (CloneNotSupportedException e) {
-                System.out.println("Клонирование невозможнО!");
-                return this;
+                e.printStackTrace();
             }
+            return this;
         }
     }
 
@@ -47,8 +60,12 @@ public class LinkedListVector implements Vector, Cloneable, Serializable {
     /*Номер последнего использовавшиегося элемента связного списка. Значение "-1" соответствует голове.*/
     private int currentIndex = -1;
 
+    public void setCurrent(Node current) {
+        this.current = current;
+    }
+
     /*Вспомогательный метод доступа к элементу списка.
-       Должен использоваться для доступа из всех остальных методов, т.к. реализует механизм "памяти". index - номер требующегося элемента*/
+           Должен использоваться для доступа из всех остальных методов, т.к. реализует механизм "памяти". index - номер требующегося элемента*/
     private Node gotoNumber(int index) {
         if ((index >= 0) && (index < size)) {
             if (index < currentIndex) {
@@ -181,15 +198,24 @@ public class LinkedListVector implements Vector, Cloneable, Serializable {
 
     public Object clone() {
         try {
-            return super.clone();
+            LinkedListVector clone = (LinkedListVector) super.clone();
+            int length = getLength();
 
-            Node head = gotoNumber(-1).clone();
+            clone.head = head.clone();
+            clone.head.prev = clone.head;
+            clone.head.next = clone.head;
 
-            for(int i = -1;i<getLength();i++){
-
+            for (int i = 0; i < length; i++) {
+                Node newNode = gotoNumber(i).clone();
+                newNode.prev = clone.head.prev;
+                newNode.next = clone.head;
+                newNode.prev.next = newNode;
+                newNode.next.prev = newNode;
+                clone.current = newNode;
             }
+            clone.currentIndex = length;
 
-
+            return clone;
         } catch (CloneNotSupportedException e) {
             System.out.println("Клонирование невозможнО!");
             return this;

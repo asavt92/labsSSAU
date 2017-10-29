@@ -1,4 +1,7 @@
-package labs;
+package labs.VectorClass;
+
+import labs.MyExceptions.ArrayIndexOutOfBoundsException;
+import labs.Enums.EDelimiters;
 
 import java.io.*;
 
@@ -7,7 +10,7 @@ public class Vectors {
     static private String delimiter = EDelimiters.SLASH.getDelimiter();
 
 
-    public static void mult(Vector vector, double a) throws ArrayIndexOutOfBoundsException{
+    public static void mult(Vector vector, double a) throws ArrayIndexOutOfBoundsException {
         int length = vector.getLength();
         for (int i = 0; i < length; i++) {
             vector.setElement(i, vector.getElement(i) * a);

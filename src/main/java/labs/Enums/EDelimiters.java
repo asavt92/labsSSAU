@@ -1,4 +1,4 @@
-package labs;
+package labs.Enums;
 
 public enum EDelimiters {
     SLASH("/"), SPACE(" ");
